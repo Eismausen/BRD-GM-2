@@ -1,0 +1,2 @@
+class MechanicRecordsController < ApplicationController
+end
