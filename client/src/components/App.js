@@ -7,6 +7,7 @@ import Inventory from './Inventory';
 import Wishlist from './Wishlist';
 import Browse from './Browse';
 import Navbar from './Navbar';
+import SeedUtil from './SeedUtil';
 
 function App() {
   
@@ -21,7 +22,7 @@ function App() {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/browse" element={<Browse />} />
         <Route path="/login" element={<Login />} />
-        
+        <Route path="/seeder" element={<SeedUtil />} />
           
         
       </Routes>
