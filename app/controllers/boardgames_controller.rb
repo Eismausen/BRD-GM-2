@@ -1,4 +1,15 @@
 class BoardgamesController < ApplicationController
+    skip_before_action :authorize, only: [:create, :index, :show]
+
+    def index
+        all_boardgames = Boardgame.all
+        render json: all_boardgames, status: :ok
+    end
+
+    def show
+        this_boardgame = Boardgame.find_by(id: params[:id])
+        render json: this_boardgame, status: :ok
+    end
 
     def create
         new_boardgame = Boardgame.create!(boardgame_params)
