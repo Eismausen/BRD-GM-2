@@ -44,6 +44,7 @@ function Login({setUser, logout}) {
             } else {
                 res.json()
                 .then(errors => {
+                    alert("Login not recognized.");
                     console.log(errors);
                 });
             }
