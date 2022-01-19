@@ -12,7 +12,7 @@ Rails.application.configure do
   config.eager_load = false
 
   # Show full error reports.
-  config.consider_all_requests_local = true
+  config.consider_all_requests_local = false
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -30,8 +30,26 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Do care if the mailer can't send.  
+  config.action_mailer.default_url_options = {:host => 'localhost:3000', protocol: 'http'}
+  config.action_mailer.default_options = {
+    from: 'noreply@brdgm.com'
+  }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'brdgm.com',
+    user_name: 'sommeprogrammer@gmail.com',
+    password: 'Grac3indefeat!',
+    authentication: 'plain',
+    enable_starttls_auto: true,
+    open_timeout: 5,
+    read_timeout: 5
+  }
+
+  config.action_mailer.perform_deliveries = true
 
   config.action_mailer.perform_caching = false
 
