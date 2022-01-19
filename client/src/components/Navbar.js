@@ -1,6 +1,14 @@
 import {Link} from 'react-router-dom';
 
-function Navbar() {
+function Navbar({logout, setUser}) {
+
+    function handleLogout() {
+        fetch('/logout')
+        .then(() => {
+            setUser([]);
+            logout(true);
+        });        
+    }
 
     return (
         <div id="Navbar">
@@ -10,7 +18,7 @@ function Navbar() {
                 <Link to="inventory">Inventory</Link>
                 <Link to="wishlist">Wishlist</Link>
                 <Link to="browse">Browse</Link>
-                <Link to="logout">Logout</Link>
+                <Link onClick={handleLogout} to="login">Logout</Link>
             </nav>
         </div>
     )

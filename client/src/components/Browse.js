@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import BoardgameCard from './BoardgameCard';
 
-function Browse() {
+function Browse({user}) {
 
     const [someGames, setSomeGames] = useState([]);
 
@@ -11,7 +11,7 @@ function Browse() {
         .then(boardgames => setSomeGames(boardgames))
     }, [])
 
-    let cardsToRender = someGames.map(game => <BoardgameCard key={game.id} boardgame={game} />)
+    let cardsToRender = someGames.map(game => <BoardgameCard key={game.id} boardgame={game} user={user} />)
 
     return (
         <div id="Browse">

@@ -7,7 +7,7 @@ function SeedUtil() {
     const boardgamesURL = '';
 
     //will need POST endpoints for Mechanics, Categories, and then Boardgames
-    const databaseToDumpTo = 'http://localhost:3000/';
+    //const databaseToDumpTo = 'http://localhost:3000/';
     /*
     const dumpMechanics = 'http://localhost:3000/mechanics';
     const dumpCategores = 'http://localhost:3000/categories';
@@ -111,7 +111,7 @@ function SeedUtil() {
                 //expand the categories/mechanics associated with each game
                 let newGameCategories = [...game?.categories];
                 let newGameMechanics = [...game?.mechanics];
-                let boardgameDump = 'http://localhost:3000/boardgames';
+                let boardgameDump = '/boardgames';
                 let postConfig = {
                     method: 'POST',
                     headers: {'Content-Type':'application/json'},
@@ -124,7 +124,7 @@ function SeedUtil() {
                 console.log(`New boardgame record created for: ${newGameRecord}`);
                 //with the game record created, we can populate the associated mechanics/categories for that boardgame
                 for (const mechanic of newGameMechanics) {
-                    let mechCodeFinder = `http://localhost:3000/mechanics/code/${mechanic.id}`;                    
+                    let mechCodeFinder = `/mechanics/code/${mechanic.id}`;                    
                     let mechanicObj = await fetch(mechCodeFinder)
                     .then(res => res.json())
                     console.log(`Creating associated record for mechanic: '${mechanicObj?.name}`);                    
@@ -132,7 +132,7 @@ function SeedUtil() {
                         boardgame_id: newGameRecord?.id,
                         mechanic_id: mechanicObj?.id                        
                     };
-                    let mechanicPostURL = 'http://localhost:3000/mechanic_records';
+                    let mechanicPostURL = '/mechanic_records';
                     let mechanicPostConfig = {
                         method: 'POST',
                         headers: {'Content-Type':'application/json'},
@@ -143,7 +143,7 @@ function SeedUtil() {
                     console.log(`Mechanic record 'POST' success: ${checkPostSuccess}`);
                 }
                 for (const category of newGameCategories) {
-                    let catCodeFinder = `http://localhost:3000/categories/code/${category.id}`;
+                    let catCodeFinder = `/categories/code/${category.id}`;
                     let catObj = await fetch(catCodeFinder)
                     .then(res => res.json());
                     console.log(`Creating associated record for category: ${catObj?.name}`);
@@ -151,7 +151,7 @@ function SeedUtil() {
                         boardgame_id: newGameRecord?.id,
                         category_id: catObj?.id
                     };
-                    let catPostURL = 'http://localhost:3000/category_records';
+                    let catPostURL = '/category_records';
                     let catPostConfig = {
                         method: 'POST',
                         headers: {'Content-Type':'application/json'},
