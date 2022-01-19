@@ -1,5 +1,5 @@
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 
 function Login({setUser, logout}) {
     let navigate = useNavigate();
@@ -58,6 +58,8 @@ function Login({setUser, logout}) {
                 <input value={loginForm.password} onChange={handleChange} id="password" name="password" placeholder="password" type="password"></input>
                 <input type="submit" value="Log in"></input>
             </form>
+            <div><small>Not a member yet?</small></div>
+            <Link to="/signup"><small>Sign up!</small></Link>
         </div>
     )
 }

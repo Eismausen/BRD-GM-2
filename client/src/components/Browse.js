@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import BoardgameCard from './BoardgameCard';
+import SearchFilter from './SearchFilter';
 
 function Browse({user}) {
 
@@ -15,6 +16,7 @@ function Browse({user}) {
 
     return (
         <div id="Browse">
+            <SearchFilter />
             <small>Browse layer :3</small>
             {someGames.length > 0 ? cardsToRender : <p>No games to display yet</p>}
         </div>

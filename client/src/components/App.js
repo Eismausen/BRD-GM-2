@@ -8,6 +8,7 @@ import Wishlist from './Wishlist';
 import Browse from './Browse';
 import Navbar from './Navbar';
 import SeedUtil from './SeedUtil';
+import SearchFilter from './SearchFilter';
 
 function App() {
 
@@ -36,12 +37,13 @@ function App() {
       {activeUser?.username ? <small>Hi {activeUser.username}</small> : <small>Hi guest :3</small>}
       <Navbar logout={setLogout} setUser={setActiveUser}/>
       <Routes>
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={<Signup setUser={setActiveUser}/>} />
         <Route path="/inventory" element={<Inventory user={activeUser} />} />
         <Route path="/wishlist" element={<Wishlist user={activeUser} />} />
         <Route path="/browse" element={<Browse user={activeUser} />} />
         <Route path="/login" element={<Login logout={setLogout} setUser={setActiveUser} />} />
         <Route path="/seeder" element={<SeedUtil />} />
+        <Route path="/sandbox" element={<SearchFilter />} />        
           
         
       </Routes>

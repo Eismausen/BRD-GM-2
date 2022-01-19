@@ -14,18 +14,18 @@ function BoardgameCard({boardgame, user}) {
             .then(res => res.json())
             .then(wishRecord => setWishStatus(wishRecord))
         }
-    }, [boardgame.id])
+    }, [boardgame.id, user?.username])
 
     function changeHandler(e) {
-        console.log(!user?.username);
-        console.log(!user?.username === false);
+        //console.log(!user?.username);
+        //console.log(!user?.username === false);
         if (!user?.username === true) {
             alert("Please log in to use this feature.");
             return null
         }
         let changeAction = e.target.id.split('-')[1];
         let changeType = e.target.id.split('-')[0];
-        console.log(`${changeAction} ${changeType}`);
+        //console.log(`${changeAction} ${changeType}`);
         let httpVerb = (changeAction === 'add') ? 'POST' : 'DELETE';
         let fetchTarget = (changeType === 'inventory') ? `/inventory_records/${changeAction}/${boardgame.id}` : `/wishlist_records/${changeAction}/${boardgame.id}`;
         console.log(`${httpVerb} ${fetchTarget}`);
@@ -33,7 +33,7 @@ function BoardgameCard({boardgame, user}) {
 
         fetch(fetchTarget, changeConfig)
         .then(res => {
-            console.log(res);
+            //console.log(res);
             if (res.status === 201) {
                 console.log("I see the record creation");
                 if (changeType === 'inventory') {
@@ -53,10 +53,14 @@ function BoardgameCard({boardgame, user}) {
     }
 
     return (
-        <div class="boardgame-card">
+        <div className="boardgame-card">
             <p>--------------</p>
-            <p>{boardgame.name}</p>
-            <img src={boardgame.thumbnail} />
+            <div><p>{boardgame.name}</p></div>
+            <div><img src={boardgame.thumbnail} /></div>
+            <div><small>{boardgame?.min_players} - {boardgame?.max_players} Players</small></div>
+            <div><small>MSRP: ${boardgame?.msrp}</small></div>
+            <div><small>Min. age: {boardgame?.min_age}</small></div>
+            <div><small>{boardgame.description}</small></div>
             {!invStatus !== true ? <button onClick={changeHandler} id="inventory-remove">Remove from Inventory</button> : <button onClick={changeHandler} id="inventory-add">Add to Inventory</button>}
             {!wishStatus !== true ? <button onClick={changeHandler} id="wishlist-remove">Remove from Wishlist</button> : <button onClick={changeHandler} id="wishlist-add">Add to Wishlist</button>}
 

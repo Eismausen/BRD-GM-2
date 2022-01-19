@@ -14,11 +14,11 @@ function Navbar({logout, setUser}) {
         <div id="Navbar">
             <small>Navbar layer :3</small>
             <nav>
-                <Link to="login">Log in</Link>
-                <Link to="inventory">Inventory</Link>
-                <Link to="wishlist">Wishlist</Link>
-                <Link to="browse">Browse</Link>
-                <Link onClick={handleLogout} to="login">Logout</Link>
+                <Link to="login">Log in|</Link>
+                <Link to="inventory">Inventory|</Link>
+                <Link to="wishlist">Wishlist|</Link>
+                <Link to="browse">Browse|</Link>
+                <Link onClick={handleLogout} to="login">Logout</Link>                
             </nav>
         </div>
     )
