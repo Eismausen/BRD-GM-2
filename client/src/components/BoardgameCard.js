@@ -1,20 +1,28 @@
 import {useEffect, useState} from 'react';
 
-function BoardgameCard({boardgame}) {
+function BoardgameCard({boardgame, user}) {
 
     const [invStatus, setInvStatus] = useState(false);
     const [wishStatus, setWishStatus] = useState(false);
 
-    useEffect(() => {
-        fetch(`/inventory_records/check/${boardgame.id}`)
-        .then(res => res.json())
-        .then(invRecord => setInvStatus(invRecord))
-        fetch(`/wishlist_records/check/${boardgame.id}`)
-        .then(res => res.json())
-        .then(wishRecord => setWishStatus(wishRecord))
+    useEffect(() => {        
+        if (!user?.username === false) {
+            fetch(`/inventory_records/check/${boardgame.id}`)
+            .then(res => res.json())
+            .then(invRecord => setInvStatus(invRecord))
+            fetch(`/wishlist_records/check/${boardgame.id}`)
+            .then(res => res.json())
+            .then(wishRecord => setWishStatus(wishRecord))
+        }
     }, [boardgame.id])
 
     function changeHandler(e) {
+        console.log(!user?.username);
+        console.log(!user?.username === false);
+        if (!user?.username === true) {
+            alert("Please log in to use this feature.");
+            return null
+        }
         let changeAction = e.target.id.split('-')[1];
         let changeType = e.target.id.split('-')[0];
         console.log(`${changeAction} ${changeType}`);
@@ -46,7 +54,7 @@ function BoardgameCard({boardgame}) {
 
     return (
         <div class="boardgame-card">
-            <p>--CARD--</p>
+            <p>--------------</p>
             <p>{boardgame.name}</p>
             <img src={boardgame.thumbnail} />
             {!invStatus !== true ? <button onClick={changeHandler} id="inventory-remove">Remove from Inventory</button> : <button onClick={changeHandler} id="inventory-add">Add to Inventory</button>}

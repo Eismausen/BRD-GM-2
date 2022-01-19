@@ -26,7 +26,7 @@ function Signup() {
         console.log(`Username: ${formData.username}`);
         console.log(`Email: ${formData.email}`);
         console.log(`Password: ${formData.password}`);
-        const postURL = 'http://localhost:3000/signup';
+        const postURL = '/signup';
         const postConfig = {
             method: 'POST',
             headers: {'Content-Type':'application/json'},

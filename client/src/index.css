@@ -16,3 +16,8 @@ code {
   max-width: 400px;
   max-height: 647px;
 }
+
+.boardgame-card img {
+  max-width: 320px;
+  max-height: 510px;
+}

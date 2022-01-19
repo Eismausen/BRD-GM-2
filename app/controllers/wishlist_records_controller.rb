@@ -1,4 +1,9 @@
 class WishlistRecordsController < ApplicationController
+    
+    def special_index
+        user_wish_games = @current_user.wish_games                
+        render json: user_wish_games, status: :ok
+    end
 
     def create
         new_wish_record = @current_user.wishlist_records.create!(inventory_record_params)

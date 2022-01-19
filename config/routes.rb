@@ -5,15 +5,15 @@ Rails.application.routes.draw do
   resources :mechanic_records
   resources :mechanics
   resources :categories
-  resources :wishlist_records
-  resources :inventory_records
+  resources :wishlist_records, except: [:show]
+  resources :inventory_records, except: [:show]
   resources :users
 
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
-  
+    
   post "/login", to: "sessions#create"
-  delete "/logout", to: "sessions#destroy"
+  get "/logout", to: "sessions#destroy"
 
   get "/mechanics/code/:code_ref", to: "mechanics#code"
   get "/categories/code/:code_ref", to: "categories#code"
@@ -26,6 +26,10 @@ Rails.application.routes.draw do
 
   post "/wishlist_records/add/:boardgame_id", to: "wishlist_records#special_create"
   delete "/wishlist_records/remove/:boardgame_id", to: "wishlist_records#special_delete"
+
+  get "/wishlist_records/special_wish/", to: "wishlist_records#special_index"
+
+  get "/inventory_records/special_inv/", to: "inventory_records#special_index"
 
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

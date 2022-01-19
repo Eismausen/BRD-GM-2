@@ -1,7 +1,8 @@
 import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
-function Login({setUser}) {
-
+function Login({setUser, logout}) {
+    let navigate = useNavigate();
     //hold/manage login form data
     const [loginForm, setLoginForm] = useState({
         username: '',
@@ -33,7 +34,12 @@ function Login({setUser}) {
         .then(res => {
             if (res.ok) {
                 res.json()
-                .then(user => setUser(user))                
+                .then(user => {
+                    setUser(() => user);
+                    navigate("/inventory");
+                    logout(true);
+                })
+                
                 //set user state here
             } else {
                 res.json()
