@@ -11,12 +11,15 @@ function Wishlist({user}) {
         .then(wishlistGames => setUserWishlist(wishlistGames))
     }, [])
 
-    let cardsToRender = userWishlist.map(wishlistGame => <BoardgameCard key={wishlistGame.id} boardgame={wishlistGame} user={user} />)
+    let cardsToRender = [];
+    if (userWishlist.length > 0) {
+        cardsToRender = userWishlist.map(wishlistGame => <BoardgameCard key={wishlistGame.id} boardgame={wishlistGame} user={user} />)
+    }
     
     return (
         <div id="Wishlist">
             <small>Wishlist layer :3</small>
-            {cardsToRender.length > 0 ? cardsToRender : null}        
+            {cardsToRender.length > 0 ? cardsToRender : null}
         </div>
     )
 }

@@ -11,12 +11,15 @@ function Inventory ({user}) {
         .then(invGames => setUserInventory(invGames))
     }, [])
 
-    let cardsToRender = userInventory.map(inventoryGame => <BoardgameCard key={inventoryGame.id} boardgame={inventoryGame} user={user} />)
-
+    let cardsToRender = [];
+    if (userInventory.length > 0) {
+        cardsToRender = userInventory.map(inventoryGame => <BoardgameCard key={inventoryGame.id} boardgame={inventoryGame} user={user} />)
+    }
+    
     return (
         <div id="Inventory">
             <small>Inventory layer :3</small>            
-            {cardsToRender.length > 0 ? cardsToRender : null}
+            {cardsToRender.length > 0 ? cardsToRender : null}        
         </div>
     )
 }

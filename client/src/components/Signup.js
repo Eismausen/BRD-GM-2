@@ -1,7 +1,8 @@
 import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
-function Signup() {
-
+function Signup({setUser}) {
+    let navigate = useNavigate();
     //State for managing controlled form
     const [formData, setFormData] = useState({
         username: '',
@@ -22,10 +23,7 @@ function Signup() {
 
     //handle form submit, create new user
     function handleSubmit(e) {
-        e.preventDefault();
-        console.log(`Username: ${formData.username}`);
-        console.log(`Email: ${formData.email}`);
-        console.log(`Password: ${formData.password}`);
+        e.preventDefault();        
         const postURL = '/signup';
         const postConfig = {
             method: 'POST',
@@ -35,8 +33,10 @@ function Signup() {
 
         fetch(postURL, postConfig)
         .then(res => res.json())
-        .then(response => console.log(response));
-
+        .then(response => {
+            setUser(response);
+            navigate("/inventory");
+        });
     }
 
 
