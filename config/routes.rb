@@ -18,6 +18,15 @@ Rails.application.routes.draw do
   get "/mechanics/code/:code_ref", to: "mechanics#code"
   get "/categories/code/:code_ref", to: "categories#code"
 
+  get "/inventory_records/check/:boardgame_id", to: "inventory_records#check"
+  get "/wishlist_records/check/:boardgame_id", to: "wishlist_records#check"
+
+  post "/inventory_records/add/:boardgame_id", to: "inventory_records#special_create"
+  delete "/inventory_records/remove/:boardgame_id", to: "inventory_records#special_delete"
+
+  post "/wishlist_records/add/:boardgame_id", to: "wishlist_records#special_create"
+  delete "/wishlist_records/remove/:boardgame_id", to: "wishlist_records#special_delete"
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   

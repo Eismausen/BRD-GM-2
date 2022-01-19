@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.boardgame-card {
+  max-width: 400px;
+  max-height: 647px;
+}

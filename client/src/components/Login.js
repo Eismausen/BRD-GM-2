@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-function Login() {
+function Login({setUser}) {
 
     //hold/manage login form data
     const [loginForm, setLoginForm] = useState({
@@ -22,7 +22,8 @@ function Login() {
     //form submit handler
     function handleSubmit(e) {
         e.preventDefault();
-        let loginURL = 'http://localhost:3000/login';
+        console.log("Seeing login attempt.");
+        let loginURL = '/login';
         let loginConfig = {
             method: 'POST',
             headers: {'Content-Type':'application/json'},
@@ -32,7 +33,7 @@ function Login() {
         .then(res => {
             if (res.ok) {
                 res.json()
-                .then(user => console.log(user))
+                .then(user => setUser(user))                
                 //set user state here
             } else {
                 res.json()

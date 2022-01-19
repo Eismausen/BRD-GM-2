@@ -3,7 +3,8 @@ class BoardgamesController < ApplicationController
 
     def index
         all_boardgames = Boardgame.all
-        render json: all_boardgames, status: :ok
+        smaller_boardgames = all_boardgames.slice(0, 30)
+        render json: smaller_boardgames, status: :ok
     end
 
     def show
