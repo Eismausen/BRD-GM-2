@@ -56,7 +56,7 @@ function BoardgameCard({boardgame, user}) {
         <div className="boardgame-card">
             <p>--------------</p>
             <div><p>{boardgame.name}</p></div>
-            <div><img src={boardgame.thumbnail} /></div>
+            <div><img src={boardgame.thumbnail} alt={boardgame.name}/></div>
             <div><small>{boardgame?.min_players} - {boardgame?.max_players} Players</small></div>
             <div><small>MSRP: ${boardgame?.msrp}</small></div>
             <div><small>Min. age: {boardgame?.min_age}</small></div>

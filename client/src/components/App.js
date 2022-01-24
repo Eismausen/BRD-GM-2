@@ -9,6 +9,7 @@ import Browse from './Browse';
 import Navbar from './Navbar';
 import SeedUtil from './SeedUtil';
 import SearchFilter from './SearchFilter';
+import Detail from './Detail';
 
 function App() {
 
@@ -43,7 +44,8 @@ function App() {
         <Route path="/browse" element={<Browse user={activeUser} />} />
         <Route path="/login" element={<Login logout={setLogout} setUser={setActiveUser} />} />
         <Route path="/seeder" element={<SeedUtil />} />
-        <Route path="/sandbox" element={<SearchFilter />} />        
+        <Route path="/sandbox" element={<SearchFilter />} />
+        <Route path="/detail/:id" element={<Detail />} />
           
         
       </Routes>

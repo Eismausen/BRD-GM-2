@@ -15,6 +15,34 @@ class WishlistRecordsController < ApplicationController
         render json: record_check, status: :ok
     end
 
+    def search
+        puts params.except(:controller, :action)
+        results = @current_user.wish_games.all
+        if params[:name]
+            puts "Inside params-name"
+            results = results.filter{|boardgame| boardgame.name_include?(params[:name])}
+        end
+        
+        if params[:category]
+            puts "Inside params-category"
+            results = results.filter{|boardgame| boardgame.categories_include?(params[:category])}
+        end
+
+        if params[:mechanic]
+            puts "Inside params-mechanic"
+            results = results.filter{|boardgame| boardgame.mechanics_include?(params[:mechanic])}
+        end
+
+        if params[:players]            
+            puts "Inside params-players"            
+            results = results.filter{|boardgame| boardgame.min_players.is_a?(Integer) && boardgame.max_players.is_a?(Integer)}
+            results = results.filter{|boardgame| boardgame.players?(params[:players].to_i)}
+        end
+
+        puts results
+        render json: results, status: :ok
+    end
+
     def special_create
         new_wish_record = @current_user.wishlist_records.create!(boardgame_id: params[:boardgame_id])
         render json: new_wish_record, status: :created
