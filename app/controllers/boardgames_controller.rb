@@ -4,12 +4,43 @@ class BoardgamesController < ApplicationController
     def index
         all_boardgames = Boardgame.all
         smaller_boardgames = all_boardgames.slice(0, 30)
-        render json: smaller_boardgames, status: :ok
+        render json: smaller_boardgames, include: [:mechanic_names, :category_names], status: :ok
     end
 
     def show
         this_boardgame = Boardgame.find_by(id: params[:id])
-        render json: this_boardgame, status: :ok
+        render json: this_boardgame, include: [:mechanic_names, :category_names], status: :ok
+    end
+
+    def search
+        puts params.except(:controller, :action)
+        results = Boardgame.all
+        if params[:name]
+            puts "Inside params-name"
+            results = results.filter{|boardgame| boardgame.name_include?(params[:name])}
+        end
+        
+        if params[:category]
+            puts "Inside params-category"
+            results = results.filter{|boardgame| boardgame.categories_include?(params[:category])}
+        end
+
+        if params[:mechanic]
+            puts "Inside params-mechanic"
+            results = results.filter{|boardgame| boardgame.mechanics_include?(params[:mechanic])}
+        end
+
+        if params[:players]
+            #byebug
+            puts "Inside params-players"            
+            results = results.filter{|boardgame| boardgame.min_players.is_a?(Integer) && boardgame.max_players.is_a?(Integer)}
+            #byebug
+            results = results.filter{|boardgame| boardgame.players?(params[:players].to_i)}
+            #byebug
+        end
+
+        #puts results
+        render json: results, status: :ok
     end
 
     def create

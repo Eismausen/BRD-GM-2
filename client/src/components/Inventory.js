@@ -1,5 +1,6 @@
 import {useEffect, useState} from 'react';
 import BoardgameCard from './BoardgameCard';
+import SearchFilter from './SearchFilter';
 
 function Inventory ({user}) {
 
@@ -18,8 +19,9 @@ function Inventory ({user}) {
     
     return (
         <div id="Inventory">
-            <small>Inventory layer :3</small>            
-            {cardsToRender.length > 0 ? cardsToRender : null}        
+            <small>Inventory layer :3</small>
+            <SearchFilter setGames={setUserInventory} />            
+            {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>>}        
         </div>
     )
 }

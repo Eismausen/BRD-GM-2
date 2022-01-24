@@ -16,7 +16,7 @@ function Browse({user}) {
 
     return (
         <div id="Browse">
-            <SearchFilter />
+            <SearchFilter setGames={setSomeGames} />
             <small>Browse layer :3</small>
             {someGames.length > 0 ? cardsToRender : <p>No games to display yet</p>}
         </div>

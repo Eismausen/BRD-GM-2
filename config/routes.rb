@@ -31,6 +31,10 @@ Rails.application.routes.draw do
 
   get "/inventory_records/special_inv/", to: "inventory_records#special_index"
 
+  post "/browse/search/", to: "boardgames#search"
+  post "/inventory/search", to: "inventory_records#search"
+  post "/wishlist/search", to: "wishlist_records#search"
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   

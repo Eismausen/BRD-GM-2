@@ -1,10 +1,9 @@
-import {useState} from 'react';
 
 function SeedUtil() {
 
-    const mechanicsURL = 'https://api.boardgameatlas.com/api/game/mechanics?client_id=NZQRPYlalg';
-    const categoriesURL = 'https://api.boardgameatlas.com/api/game/categories?client_id=NZQRPYlalg';
-    const boardgamesURL = '';
+    //const mechanicsURL = 'https://api.boardgameatlas.com/api/game/mechanics?client_id=NZQRPYlalg';
+    //const categoriesURL = 'https://api.boardgameatlas.com/api/game/categories?client_id=NZQRPYlalg';
+    //const boardgamesURL = '';
 
     //will need POST endpoints for Mechanics, Categories, and then Boardgames
     //const databaseToDumpTo = 'http://localhost:3000/';

@@ -1,8 +1,11 @@
 import {useState, useEffect} from 'react';
+import SearchFilter from './SearchFilter';
 import BoardgameCard from './BoardgameCard';
 
-function Wishlist({user}) {
 
+function Wishlist({user}) {
+    
+    
     const [userWishlist, setUserWishlist] = useState([]);
 
     useEffect(() => {
@@ -19,7 +22,8 @@ function Wishlist({user}) {
     return (
         <div id="Wishlist">
             <small>Wishlist layer :3</small>
-            {cardsToRender.length > 0 ? cardsToRender : null}
+            <SearchFilter setGames={setUserWishlist}/>        
+            {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>>}
         </div>
     )
 }
