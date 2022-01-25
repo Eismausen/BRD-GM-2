@@ -21,7 +21,7 @@ function Inventory ({user}) {
         <div id="Inventory">
             <small>Inventory layer :3</small>
             <SearchFilter setGames={setUserInventory} />            
-            {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>>}        
+            {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>}        
         </div>
     )
 }
