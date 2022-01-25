@@ -23,7 +23,7 @@ function Wishlist({user}) {
         <div id="Wishlist">
             <small>Wishlist layer :3</small>
             <SearchFilter setGames={setUserWishlist}/>        
-            {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>>}
+            {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>}
         </div>
     )
 }

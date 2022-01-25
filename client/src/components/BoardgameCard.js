@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
 
 function BoardgameCard({boardgame, user}) {
 
@@ -55,12 +56,12 @@ function BoardgameCard({boardgame, user}) {
     return (
         <div className="boardgame-card">
             <p>--------------</p>
-            <div><p>{boardgame.name}</p></div>
+            <Link to={`/detail/${boardgame.id}`}><p>{boardgame.name}</p></Link>
             <div><img src={boardgame.thumbnail} alt={boardgame.name}/></div>
             <div><small>{boardgame?.min_players} - {boardgame?.max_players} Players</small></div>
             <div><small>MSRP: ${boardgame?.msrp}</small></div>
             <div><small>Min. age: {boardgame?.min_age}</small></div>
-            <div><small>{boardgame.description}</small></div>
+            {boardgame?.description.length > 100 ? <div><small>{boardgame.description.slice(0,100) + '...[read more in detail view]'}</small></div> : <div><small>No description preview available.</small></div>}
             {!invStatus !== true ? <button onClick={changeHandler} id="inventory-remove">Remove from Inventory</button> : <button onClick={changeHandler} id="inventory-add">Add to Inventory</button>}
             {!wishStatus !== true ? <button onClick={changeHandler} id="wishlist-remove">Remove from Wishlist</button> : <button onClick={changeHandler} id="wishlist-add">Add to Wishlist</button>}
 
