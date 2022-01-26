@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import {Container, Form, Col, Row, Button} from 'react-bootstrap';
 
 function Login({setUser, logout}) {
     let navigate = useNavigate();
@@ -53,14 +54,52 @@ function Login({setUser, logout}) {
 
     return (
         <div id="login">
-            <p>Hello from the Login component :3</p>
-            <form id='login-form' onSubmit={handleSubmit}>
-                <input value={loginForm.username} onChange={handleChange} id="username" name="username" placeholder="username" type="text"></input>
-                <input value={loginForm.password} onChange={handleChange} id="password" name="password" placeholder="password" type="password"></input>
-                <input type="submit" value="Log in"></input>
-            </form>
-            <div><small>Not a member yet?</small></div>
-            <Link to="/signup"><small>Sign up!</small></Link>
+            <Container className="content-center">            
+                <Form id='login-form' onSubmit={handleSubmit}>               
+                    <Form.Group>
+                        <Row>
+                            <Col></Col>
+                            <Col className="text-center"><Form.Label ><small>Username</small></Form.Label></Col>
+                            <Col></Col>
+                        </Row>
+                        <Row>
+                            <Col></Col>
+                            <Col><Form.Control size="sm" value={loginForm.username} onChange={handleChange} id="username" name="username" placeholder="username" type="text"/></Col>
+                            <Col></Col>
+                        </Row>                    
+                    </Form.Group>
+                    <Form.Group>
+                        <Row>
+                            <Col></Col>
+                            <Col className="text-center"><Form.Label><small>Password</small></Form.Label></Col>
+                            <Col></Col>
+                        </Row>
+                        <Row>
+                            <Col></Col>                    
+                            <Col><Form.Control size="sm" value={loginForm.password} onChange={handleChange} id="password" name="password" placeholder="password" type="password" /></Col>
+                            <Col></Col>
+                        </Row>
+                    </Form.Group>
+                    <Form.Group>
+                        <Row>
+                            <div className="col-12 text-center">
+                                <Button className="mt-2" as="input" type="submit" value="Log in"></Button>
+                            </div>
+                        </Row>
+                    </Form.Group>
+                    
+                </Form>
+                <Row>
+                    <Col></Col>
+                    <Col className="text-center"><small>Not a member yet?</small></Col>
+                    <Col></Col>
+                </Row>
+                <Row>
+                    <Col></Col>
+                    <Col className="text-center"><Link to="/signup"><small>Sign up!</small></Link></Col>
+                    <Col></Col>
+                </Row>
+            </Container>
         </div>
     )
 }

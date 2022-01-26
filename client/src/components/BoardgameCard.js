@@ -1,5 +1,7 @@
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
+import {Container, Col, Row, Button} from 'react-bootstrap';
+
 
 function BoardgameCard({boardgame, user}) {
 
@@ -54,17 +56,24 @@ function BoardgameCard({boardgame, user}) {
     }
 
     return (
-        <div className="boardgame-card">
-            <p>--------------</p>
-            <Link to={`/detail/${boardgame.id}`}><p>{boardgame.name}</p></Link>
-            <div><img src={boardgame.thumbnail} alt={boardgame.name}/></div>
-            <div><small>{boardgame?.min_players} - {boardgame?.max_players} Players</small></div>
-            <div><small>MSRP: ${boardgame?.msrp}</small></div>
-            <div><small>Min. age: {boardgame?.min_age}</small></div>
-            {boardgame?.description.length > 100 ? <div><small>{boardgame.description.slice(0,100) + '...[read more in detail view]'}</small></div> : <div><small>No description preview available.</small></div>}
-            {!invStatus !== true ? <button onClick={changeHandler} id="inventory-remove">Remove from Inventory</button> : <button onClick={changeHandler} id="inventory-add">Add to Inventory</button>}
-            {!wishStatus !== true ? <button onClick={changeHandler} id="wishlist-remove">Remove from Wishlist</button> : <button onClick={changeHandler} id="wishlist-add">Add to Wishlist</button>}
-
+        <div className="boardgame-card border-dark mt-4 mb-2 ml-auto mr-auto ml-2 mr-2 pl-2 pr-2 p-auto">
+            <Row>
+                <Col><img className="card-img-top" src={boardgame.thumbnail} alt={boardgame.name}/></Col>
+            </Row>
+            <div className="card-body bg-light">
+                <div className="card-title"><Link to={`/detail/${boardgame.id}`}><p>{boardgame.name}</p></Link></div>
+                <div><small>{boardgame?.min_players} - {boardgame?.max_players} Players</small></div>
+                <div><small><strong>Price:</strong> ${boardgame?.price}</small></div>
+                <div><small><strong>Min. age:</strong> {boardgame?.min_age}</small></div>
+                {boardgame?.description.length > 100 ? <div><small>{boardgame.description.slice(0,100) + '...[read more in detail view]'}</small></div> : <div><small>No description preview available.</small></div>}
+            </div>
+            <div className="card-footer bg-light">
+                <Row>
+                    <Col className="col-4">{!invStatus !== true ? <Button variant="warning" onClick={changeHandler} id="inventory-remove">Remove from Inventory</Button> : <Button variant="info" onClick={changeHandler} id="inventory-add">Add to Inventory</Button>}</Col>
+                    <Col></Col>
+                    <Col className="col-4">{!wishStatus !== true ? <Button variant="warning" onClick={changeHandler} id="wishlist-remove">Remove from Wishlist</Button> : <Button variant="info" onClick={changeHandler} id="wishlist-add">Add to Wishlist</Button>}</Col>
+                </Row>    
+            </div>
         </div>
     )
 }

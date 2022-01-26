@@ -40,7 +40,7 @@ class BoardgamesController < ApplicationController
         end
 
         #puts results
-        render json: results, status: :ok
+        render json: results.slice(0, 50), status: :ok
     end
 
     def create
