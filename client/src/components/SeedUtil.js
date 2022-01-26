@@ -65,8 +65,10 @@ function SeedUtil() {
 
         for (const firstLetter of allLetters) {
             for (const secondLetter of allLetters) {
-                let seed = `${firstLetter}${secondLetter}`;
-                querySeeds.push(seed);
+                for (const thirdLetter of allLetters) {
+                    let seed = `${firstLetter}${secondLetter}${thirdLetter}`;
+                    querySeeds.push(seed);
+                }
             }
         }
         let baseURL = 'https://api.boardgameatlas.com/api/search?name=';
@@ -77,6 +79,7 @@ function SeedUtil() {
             let fullQuery = `${baseURL}${seed}${suffix}`;
             let games = await fetch(fullQuery)
             .then(res => res.json())
+            .catch(err => console.log("something broke"))
             .then(gamesObj => gamesObj.games)
             //for each set of results, we create an array of responses called 'games'
             for (const game of games) {

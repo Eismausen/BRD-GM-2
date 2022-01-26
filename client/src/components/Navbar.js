@@ -11,14 +11,15 @@ function Navbar({logout, setUser}) {
     }
 
     return (
-        <div id="Navbar">
-            <small>Navbar layer :3</small>
+        <div className="container-flex" id="Navbar">            
             <nav>
-                <Link to="login">Log in|</Link>
-                <Link to="inventory">Inventory|</Link>
-                <Link to="wishlist">Wishlist|</Link>
-                <Link to="browse">Browse|</Link>
-                <Link onClick={handleLogout} to="login">Logout</Link>                
+                <div className="col">
+                    <div className="row"><Link to="login">Log in</Link></div>
+                    <div className="row"><Link to="inventory">Inventory</Link></div>
+                    <div className="row"><Link to="wishlist">Wishlist</Link></div>
+                    <div className="row"><Link to="browse">Browse</Link></div>
+                    <div className="row"><Link onClick={handleLogout} to="login">Logout</Link>                </div>
+                </div>
             </nav>
         </div>
     )
