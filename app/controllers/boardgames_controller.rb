@@ -1,5 +1,5 @@
 class BoardgamesController < ApplicationController
-    skip_before_action :authorize, only: [:create, :index, :show]
+    skip_before_action :authorize, only: [:index, :show]
 
     def index
         all_boardgames = Boardgame.all
@@ -40,7 +40,7 @@ class BoardgamesController < ApplicationController
         end
 
         #puts results
-        render json: results.slice(0, 50), status: :ok
+        render json: results.slice(0, 100), status: :ok
     end
 
     def create
