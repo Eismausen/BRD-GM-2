@@ -53,7 +53,7 @@ function Signup({setUser}) {
                 <Form.Group>
                     <Row className="text-left">
                         <Col></Col>
-                        <Col><Form.Label for="username"><small>Username</small></Form.Label></Col>
+                        <Col><Form.Label htmlFor="username"><small>Username</small></Form.Label></Col>
                         <Col></Col>                        
                     </Row>
                     <Row className="mb-1">
@@ -65,7 +65,7 @@ function Signup({setUser}) {
                 <Form.Group>
                     <Row>
                         <Col></Col>
-                        <Col><Form.Label for="email"><small>Email</small></Form.Label></Col>
+                        <Col><Form.Label htmlFor="email"><small>Email</small></Form.Label></Col>
                         <Col></Col>
                     </Row>
                     <Row className="mb-2">
@@ -77,7 +77,7 @@ function Signup({setUser}) {
                 <Form.Group>
                     <Row>
                         <Col></Col>
-                        <Col><Form.Label for="password"><small>Password</small></Form.Label></Col>
+                        <Col><Form.Label htmlFor="password"><small>Password</small></Form.Label></Col>
                         <Col></Col>
                     </Row>
                     <Row>
@@ -87,7 +87,7 @@ function Signup({setUser}) {
                     </Row>
                     <Row>
                         <Col></Col>
-                        <Col><Form.Label for="password_confirmation"><small>Confirm password</small></Form.Label></Col>
+                        <Col><Form.Label htmlFor="password_confirmation"><small>Confirm password</small></Form.Label></Col>
                         <Col></Col>
                     </Row>
                     <Row>

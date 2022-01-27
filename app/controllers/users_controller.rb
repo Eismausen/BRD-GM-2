@@ -3,10 +3,10 @@ class UsersController < ApplicationController
 
     def create        
         new_user = User.create!(user_params)
-        if new_user
-            UserMailer.with(user: new_user).welcome_email.deliver_now
-        end
-        session[:user_id] = new_user.id        
+        session[:user_id] = new_user.id
+        #if new_user
+        #    UserMailer.with(user: new_user).welcome_email.deliver_now
+        #end                
         render json: new_user, status: :created
     end
 
