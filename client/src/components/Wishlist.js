@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import SearchFilter from './SearchFilter';
 import BoardgameCard from './BoardgameCard';
+import {Row, Col} from 'react-bootstrap';
 
 
 function Wishlist({user}) {
@@ -72,13 +73,26 @@ function Wishlist({user}) {
     if (userWishlist.length > 0) {
         cardsToRender = [...userWishlist];        
         cardsToRender = cardsToRender.map(wishlistGame => <BoardgameCard key={wishlistGame.id} boardgame={wishlistGame} user={user} />)
-    }   
+    }
+    
+    if (cardsToRender.length === 0) {
+        return (
+            <div id="Wishlist">
+            <SearchFilter setGames={setUserWishlist} setSortBy={sortHelper} sortBy={sortBy} loaded={setIsLoaded}/>
+                <Row>
+                    <Col></Col>
+                    {isLoaded ? <Col className="text-center">No results to display.</Col> : <Col className="text-center">Still loading...</Col>}
+                    <Col></Col>
+                </Row>            
+            </div>
+        )
+    }
     
     return (
         <div id="Wishlist">            
             <SearchFilter setGames={setUserWishlist} setSortBy={sortHelper} sortBy={sortBy} loaded={setIsLoaded}/>
             <div className="container-fluid d-flex card-deck flex-wrap">
-                {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>}
+                {cardsToRender}
             </div>        
         </div>
     )

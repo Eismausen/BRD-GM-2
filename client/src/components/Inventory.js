@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import BoardgameCard from './BoardgameCard';
 import SearchFilter from './SearchFilter';
+import {Col, Row} from 'react-bootstrap';
 
 function Inventory ({user}) {
 
@@ -71,12 +72,25 @@ function Inventory ({user}) {
         cardsToRender = [...userInventory];
         cardsToRender = cardsToRender.map(inventoryGame => <BoardgameCard key={inventoryGame.id} boardgame={inventoryGame} user={user} />)
     }
+
+    if (cardsToRender.length === 0) {
+        return (
+            <div id="Inventory">
+            <SearchFilter setGames={setUserInventory} setSortBy={sortHelper} sortBy={sortBy} loaded={setIsLoaded}/>
+                <Row>
+                    <Col></Col>
+                    {isLoaded ? <Col className="text-center">No results to display.</Col> : <Col className="text-center">Still loading...</Col>}
+                    <Col></Col>
+                </Row>            
+            </div>
+        )
+    }
     
     return (
         <div id="Inventory">
             <SearchFilter setGames={setUserInventory} setSortBy={sortHelper} sortBy={sortBy} loaded={setIsLoaded}/>
             <div className="container-fluid d-flex card-deck flex-wrap">
-                {cardsToRender.length > 0 ? cardsToRender : <p>No matching results</p>}        
+                {cardsToRender}        
             </div>
         </div>
     )

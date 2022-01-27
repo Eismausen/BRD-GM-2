@@ -10,7 +10,7 @@ import Navbar from './Navbar';
 import SeedUtil from './SeedUtil';
 import SearchFilter from './SearchFilter';
 import Detail from './Detail';
-import {Container, Row, Col} from 'react-bootstrap';
+
 
 
 function App() {
