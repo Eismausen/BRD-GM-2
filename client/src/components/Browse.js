@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import BoardgameCard from './BoardgameCard';
 import SearchFilter from './SearchFilter';
+import {Row, Col} from 'react-bootstrap';
 
 function Browse({user}) {
 
@@ -73,13 +74,26 @@ function Browse({user}) {
     if (someGames.length > 0) {
         cardsToRender = [...someGames];
         cardsToRender = cardsToRender.map(someGame => <BoardgameCard key={someGame.id} boardgame={someGame} user={user} />)
-    }   
+    }
+    
+    if (cardsToRender.length === 0) {
+        return (
+            <div id="Browse">
+            <SearchFilter setGames={setSomeGames} setSortBy={sortHelper} sortBy={sortBy} loaded={setIsLoaded}/>
+                <Row>
+                    <Col></Col>
+                    {isLoaded ? <Col className="text-center">No results to display.</Col> : <Col className="text-center">Still loading...</Col>}
+                    <Col></Col>
+                </Row>            
+            </div>
+        )
+    }
 
     return (
         <div id="Browse">
             <SearchFilter setGames={setSomeGames} setSortBy={sortHelper} sortBy={sortBy} loaded={setIsLoaded} isLoaded={isLoaded}/>
             <div className="container-fluid d-flex card-deck flex-wrap">
-                {someGames.length > 0 && isLoaded ? cardsToRender : <p>No games to display</p>}
+                {cardsToRender}
             </div>     
         </div>
     )    

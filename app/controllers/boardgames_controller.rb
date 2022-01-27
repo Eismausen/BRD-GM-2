@@ -3,7 +3,7 @@ class BoardgamesController < ApplicationController
 
     def index
         all_boardgames = Boardgame.all
-        smaller_boardgames = all_boardgames.slice(0, 30)
+        smaller_boardgames = all_boardgames.sample(50)
         render json: smaller_boardgames, include: [:mechanic_names, :category_names], status: :ok
     end
 

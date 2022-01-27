@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import {Container, Col, Row, Button} from 'react-bootstrap';
+import {Col, Row, Button} from 'react-bootstrap';
 
 
 function BoardgameCard({boardgame, user}) {
